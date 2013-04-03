@@ -5,7 +5,7 @@ proto
 *.log.[1-9]
 src
 localrc
-local.sh
+!local.sh
 files/*.gz
 files/images
 stack-screenrc
