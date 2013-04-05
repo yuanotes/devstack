@@ -23,7 +23,7 @@ source $TOP_DIR/stackrc
 # Destination path for installation ``DEST``
 DEST=${DEST:-/opt/stack}
 
-
+service_check
 # Import ssh keys
 # ---------------
 
@@ -46,16 +46,16 @@ DEST=${DEST:-/opt/stack}
 # ---------------
 
 # Get OpenStack admin auth
-#source $TOP_DIR/openrc admin admin
+source $TOP_DIR/openrc admin admin
 
 # Name of new flavor
 # set in ``localrc`` with ``DEFAULT_INSTANCE_TYPE=m1.micro``
-#MI_NAME=m1.micro
+MI_NAME=m1.nano
 
 # Create micro flavor if not present
-#if [[ -z $(nova flavor-list | grep $MI_NAME) ]]; then
-#    nova flavor-create $MI_NAME 6 128 0 1
-#fi
+if [[ -z $(nova flavor-list | grep $MI_NAME) ]]; then
+    nova flavor-create $MI_NAME auto 32 0 1
+fi
 
 # Launch a nano instance
 source $TOP_DIR/openrc admin admin

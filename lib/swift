@@ -229,7 +229,7 @@ function configure_swift() {
     sed -i "/^pipeline/ { s/tempauth/${swift_pipeline} ${SWIFT_EXTRAS_MIDDLEWARE}/ ;}" ${SWIFT_CONFIG_PROXY_SERVER}
 
     if is_service_enabled ceilometer; then
-        sed -i "/^pipeline/ { s/account-quotas/account-quotas ceilometer/ ;}" ${SWIFT_CONFIG_PROXY_SERVER}
+        sed -i "/^pipeline/ { s/proxy-logging/proxy-logging ceilometer/ ;}" ${SWIFT_CONFIG_PROXY_SERVER}
     fi
 
     iniset ${SWIFT_CONFIG_PROXY_SERVER} app:proxy-server account_autocreate true
