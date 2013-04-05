@@ -228,6 +228,10 @@ function configure_swift() {
     fi
     sed -i "/^pipeline/ { s/tempauth/${swift_pipeline} ${SWIFT_EXTRAS_MIDDLEWARE}/ ;}" ${SWIFT_CONFIG_PROXY_SERVER}
 
+    if is_service_enabled ceilometer; then
+        sed -i "/^pipeline/ { s/account-quotas/account-quotas ceilometer/ ;}" ${SWIFT_CONFIG_PROXY_SERVER}
+    fi
+
     iniset ${SWIFT_CONFIG_PROXY_SERVER} app:proxy-server account_autocreate true
 
     # Configure Keystone
@@ -259,6 +263,15 @@ admin_token = ${SERVICE_TOKEN}
 
 [filter:swift3]
 use = egg:swift3#swift3
+EOF
+    fi
+
+    if is_service_enabled ceilometer; then
+        cat <<EOF >>${SWIFT_CONFIG_PROXY_SERVER}
+
+[filter:ceilometer]
+use = egg:ceilometer#swift
+
 EOF
     fi
 

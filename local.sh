@@ -73,5 +73,5 @@ nova boot --flavor m1.nano --image cirros-0.3.1-x86_64-uec nano_for_demo
 #nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
 #nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
 
-screen_it horizon "cd /opt/stack/horizon/ && ./manage.py runserver 0.0.0.0:8000"
-screen_it devstack "cd ~/devstack && source $TOP_DIR/openrc ceilometer service && export CEILOMETER_API_VERSION=2"
+#screen_it horizon "cd /opt/stack/horizon/ && ./manage.py runserver 0.0.0.0:8000"
+#screen_it devstack "cd ~/devstack && source $TOP_DIR/openrc ceilometer service && export CEILOMETER_API_VERSION=2"
